@@ -1,8 +1,12 @@
-function StarRating() {
+type StarRatingProps = {
+  maxRate?: number;
+};
+
+function StarRating({ maxRate = 5 }: StarRatingProps) {
   return (
     <div className="bg-slate-500 text-center">
       <article className="flex  justify-center text-wrap space-x-1.5 items-center">
-        {Array.from({ length: 10 }, (_, i) => (
+        {Array.from({ length: maxRate }, (_, i) => (
           <Star key={i} />
         ))}
         <span className="text-3xl">10</span>
