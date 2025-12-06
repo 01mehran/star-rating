@@ -2,6 +2,9 @@ import { useState } from "react";
 
 type StarRatingProps = {
   maxRate?: number;
+  color?: string;
+  size?: number;
+  defaultRate?: number;
 };
 
 type StarProps = {
@@ -9,10 +12,17 @@ type StarProps = {
   full: boolean;
   onHoverIn: () => void;
   onHoverOut: () => void;
+  color?: string;
+  size?: number;
 };
 
-function StarRating({ maxRate = 5 }: StarRatingProps) {
-  const [rating, setRating] = useState<number | null>(null);
+function StarRating({
+  maxRate = 5,
+  color = "#fcc419",
+  size = 48,
+  defaultRate = 0,
+}: StarRatingProps) {
+  const [rating, setRating] = useState<number | null>(defaultRate);
   const [tempRating, setTempRating] = useState<number | null>(null);
 
   const handleSetRating = (rate: number) => {
@@ -20,27 +30,33 @@ function StarRating({ maxRate = 5 }: StarRatingProps) {
   };
 
   return (
-    <div className="bg-slate-500 text-center">
-      <article className="flex  justify-center text-wrap space-x-1.5 items-center">
-        {Array.from({ length: maxRate }, (_, i) => (
-          <Star
-            key={i}
-            onRate={() => handleSetRating(i + 1)}
-            full={tempRating ? tempRating >= i + 1 : (rating ?? 0) >= i + 1}
-            // full={rating !== null && rating >= i + 1}
-            // full={rating! >= i + 1}
-            // <Star key={i} onRate={() => setRating(i + 1)} />
-            onHoverIn={() => setTempRating(i + 1)}
-            onHoverOut={() => setTempRating(0)}
-          />
-        ))}
-        <span className="text-3xl">{tempRating || rating || null}</span>
-      </article>
+    <div className="flex items-start justify-center ">
+      <div className="flex items-center w-full justify-center">
+        <div className="flex ">
+          {Array.from({ length: maxRate }, (_, i) => (
+            <Star
+              key={i}
+              onRate={() => handleSetRating(i + 1)}
+              full={tempRating ? tempRating >= i + 1 : (rating ?? 0) >= i + 1}
+              onHoverIn={() => setTempRating(i + 1)}
+              onHoverOut={() => setTempRating(0)}
+              color={color}
+              size={size}
+            />
+          ))}
+        </div>
+        <p
+          className="text-3xl "
+          style={{ color: color, minWidth: "20px", fontSize: `${size}px` }}
+        >
+          {tempRating || rating || ""}
+        </p>
+      </div>
     </div>
   );
 }
 
-function Star({ onRate, full, onHoverIn, onHoverOut }: StarProps) {
+function Star({ onRate, full, onHoverIn, onHoverOut, color, size }: StarProps) {
   return (
     <span
       role="button"
@@ -48,24 +64,27 @@ function Star({ onRate, full, onHoverIn, onHoverOut }: StarProps) {
       onClick={onRate}
       onMouseEnter={onHoverIn}
       onMouseLeave={onHoverOut}
+      style={{ width: `${size}px`, height: `${size}px` }}
     >
       {full ? (
         //  Full star;
         <svg
+          style={{ width: size, height: size }}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
-          fill="#000"
-          stroke="#000"
+          fill={color}
+          stroke={color}
         >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ) : (
         //  Empty star
         <svg
+          style={{ width: size, height: size }}
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
-          stroke="#000"
+          stroke={color}
         >
           <path
             strokeLinecap="round"
