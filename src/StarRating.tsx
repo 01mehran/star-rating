@@ -22,9 +22,9 @@ function StarRating({
   };
 
   return (
-    <div className="flex items-start justify-center ">
-      <div className="flex items-center w-full justify-center">
-        <div className="flex ">
+    <div className="flex justify-center ">
+      <div className="flex items-center w-full justify-center min-h-20 gap-4 ">
+        <div className="flex items-start">
           {Array.from({ length: maxRate }, (_, i) => (
             <Star
               key={i}
@@ -38,7 +38,7 @@ function StarRating({
           ))}
         </div>
         <p
-          className="text-3xl "
+          className="text-3xl w-12 "
           style={{ color: color, minWidth: "20px", fontSize: `${size}px` }}
         >
           {tempRating || rating || ""}
