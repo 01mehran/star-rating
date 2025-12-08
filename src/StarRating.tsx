@@ -6,6 +6,7 @@ type StarRatingProps = {
   color?: string;
   size?: number;
   defaultRate?: number;
+  messages?: string[];
 };
 
 function StarRating({
@@ -13,6 +14,7 @@ function StarRating({
   color = "#fcc419",
   size = 48,
   defaultRate = 0,
+  messages = [],
 }: StarRatingProps) {
   const [rating, setRating] = useState<number | null>(defaultRate);
   const [tempRating, setTempRating] = useState<number | null>(null);
@@ -41,7 +43,9 @@ function StarRating({
           className="text-3xl w-12 "
           style={{ color: color, minWidth: "20px", fontSize: `${size}px` }}
         >
-          {tempRating || rating || ""}
+          {messages.length === maxRate
+            ? messages[tempRating ? tempRating - 1 : (rating ?? 0) - 1]
+            : tempRating || rating || ""}
         </p>
       </div>
     </div>
