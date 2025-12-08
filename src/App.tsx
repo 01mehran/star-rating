@@ -1,3 +1,4 @@
+import { useState } from "react";
 import StarRating from "./StarRating";
 
 function App() {
@@ -12,6 +13,20 @@ function App() {
         size={32}
         messages={["Terrible", "Bad", "Okay", "Good", "Awesome"]}
       />
+      <MovieRatingStar />
+    </div>
+  );
+}
+
+function MovieRatingStar() {
+  const [movieRating, setMovieRating] = useState(0);
+
+  return (
+    <div>
+      <StarRating color="purple" maxRate={10} onSetRating={setMovieRating} />
+      <p className="text-center text-purple-500">
+        This movie was rated {movieRating || "(not rated yet!)"} stars.
+      </p>
     </div>
   );
 }

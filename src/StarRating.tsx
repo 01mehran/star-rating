@@ -7,6 +7,7 @@ type StarRatingProps = {
   size?: number;
   defaultRate?: number;
   messages?: string[];
+  onSetRating?: (rate: number) => void;
 };
 
 function StarRating({
@@ -15,12 +16,14 @@ function StarRating({
   size = 48,
   defaultRate = 0,
   messages = [],
+  onSetRating = () => {},
 }: StarRatingProps) {
   const [rating, setRating] = useState<number | null>(defaultRate);
   const [tempRating, setTempRating] = useState<number | null>(null);
 
   const handleSetRating = (rate: number) => {
     setRating(rate);
+    onSetRating(rate);
   };
 
   return (
