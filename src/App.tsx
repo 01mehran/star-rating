@@ -1,9 +1,9 @@
 import { useState } from "react";
-import StarRating from "./StarRating";
+import StarRating from "./components/StarRating";
 
 function App() {
   return (
-    <div className="h-dvh bg-slate-900 w-full pt-12">
+    <div className="min-h-dvh bg-slate-900 w-full pt-12">
       <StarRating />;
       <StarRating color="green" maxRate={8} size={32} />;
       <StarRating color="red" maxRate={10} size={26} defaultRate={3} />
