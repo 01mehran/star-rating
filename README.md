@@ -3,7 +3,7 @@
 > A customizable and reusable React component for displaying and selecting star ratings.
 > Supports custom size, colors, maxRate stars, and default filled value.
 
-![demo](/src/demo.png)
+![demo](./public/demo.png)
 
 # ✨ Features
 
