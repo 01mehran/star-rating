@@ -1,9 +1,7 @@
-type EmpyStarProps = {
-  size?: number;
-  color?: string;
-};
+// Types;
+import type { StarsIconProps } from "../types/Types";
 
-function EmpyStar({ size, color }: EmpyStarProps) {
+function EmpyStar({ size, color }: StarsIconProps) {
   return (
     <svg
       style={{ width: size, height: size }}

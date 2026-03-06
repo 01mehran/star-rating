@@ -1,14 +1,11 @@
+// Hooks;
 import { useState } from "react";
+
+// Components;
 import Star from "./Star";
 
-type StarRatingProps = {
-  maxRate?: number;
-  color?: string;
-  size?: number;
-  defaultRate?: number;
-  messages?: string[];
-  onSetRating?: (rate: number) => void;
-};
+// Types;
+import type { StarRatingProps } from "../types/Types";
 
 function StarRating({
   maxRate = 5,

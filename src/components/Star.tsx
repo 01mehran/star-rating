@@ -1,14 +1,9 @@
+// Components;
 import EmpyStar from "./EmpyStar";
 import FullStar from "./FullStar";
 
-type StarProps = {
-  onRate?: () => void;
-  full: boolean;
-  onHoverIn: () => void;
-  onHoverOut: () => void;
-  color?: string;
-  size?: number;
-};
+// Types;
+import type { StarProps } from "../types/Types";
 
 function Star({ onRate, full, onHoverIn, onHoverOut, color, size }: StarProps) {
   return (

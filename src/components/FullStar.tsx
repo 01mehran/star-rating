@@ -1,9 +1,7 @@
-type FullStarProps = {
-  size?: number;
-  color?: string;
-};
+// Types;
+import type { StarsIconProps } from "../types/Types";
 
-function FullStar({ size, color }: FullStarProps) {
+function FullStar({ size, color }: StarsIconProps) {
   return (
     <svg
       style={{ width: size, height: size }}
